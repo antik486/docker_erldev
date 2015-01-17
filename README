@@ -1,0 +1,2 @@
+docker build  --no-cache -t antik486/erldev .
+docker run -v $PWD:/DATA/app -i antik486/erldev
