@@ -5,19 +5,20 @@ RUN yum -y update; \
     yum -y install ruby ruby-devel rpm-build hostname; \
     yum clean all
 
-RUN git clone https://github.com/basho/rebar.git /tmp/rebar
-RUN cd /tmp/rebar; ./bootstrap
-RUN mkdir -p /DATA/rebar/; \
-    cp /tmp/rebar/rebar /DATA/rebar/; \
-    chmod +x /DATA/rebar/rebar; \
+RUN git clone https://github.com/basho/rebar.git /tmp/rebar; \
+    cd /tmp/rebar; \
+    ./bootstrap; \
+    mkdir -p /opt/rebar/; \
+    cp /tmp/rebar/rebar /opt/rebar/; \
+    chmod +x /opt/rebar/rebar; \
     rm -Rf /tmp/rebar;
 
-ENV PATH /DATA/rebar:$PATH
+ENV PATH /opt/rebar:$PATH
 
 RUN gem install fpm
 
-VOLUME ["/DATA/app"]
+VOLUME ["/opt/app"]
 
-WORKDIR /DATA/app
+WORKDIR /opt/app
 
 ENTRYPOINT ["bash"]
