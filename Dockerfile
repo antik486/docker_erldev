@@ -1,4 +1,4 @@
-FROM antik486/erl
+FROM antik486/docker-erl
 MAINTAINER antik486 <antik486@gmail.com>
 
 RUN yum -y update; \
